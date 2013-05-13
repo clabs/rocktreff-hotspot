@@ -1,0 +1,174 @@
+
+<!DOCTYPE html><!--
+______ _____ _____  _   _____________ _________________
+| ___ \  _  /  __ \| | / /_   _| ___ \  ___|  ___|  ___|
+| |_/ / | | | /  \/| |/ /  | | | |_/ / |__ | |_  | |_
+|    /| | | | |    |    \  | | |    /|  __||  _| |  _|
+| |\ \\ \_/ / \__/\| |\  \ | | | |\ \| |___| |   | |
+\_| \_|\___/ \____/\_| \_/ \_/ \_| \_\____/\_|   \_|
+-->
+<html lang="de-DE">
+<head>
+	<title>Login | 30. ROCKTREFF</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta name="viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no" /> 
+	<script type="text/javascript" src="//rocktreff.de/wp-content/themes/rocktreff/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container-fuild">
+		<div class="row-fluid">
+			<header class="subhead">
+				<div class="container">
+					<img align="right" src="img/logo.png">
+					<h1>WIRELESS ACCESS</h1>
+				</div>
+			</header>
+		</div>
+		<div class="row-fluid main">
+			$(if error)
+			<div class="alert alert-error">
+				$(error)
+			</div>
+			$(endif)
+		</div>
+		<div class="row-fluid main">
+			<div class="span8">
+				<div class="container-fluid">
+					<h2>Verhaltensregeln</h2>
+					<div class="row-fluid">
+						<div class="span6">
+
+							<h4 class="topic">
+								<i class="icon-smile icon-2x gelb"></i>
+								Sei fair!
+							</h4>
+							<p>
+								Uns steht in dem Stadion nur begrenzt Bandbreite zur Verfügung. Wir
+								wollen, dass alle von dem Netzwerk profitieren. Daher solltest Du
+								davon absehen größere Mengen an Daten aus dem Netz zu ziehen.
+							</p>
+
+
+							<h4 class="topic">
+								<i class="icon-laptop icon-2x gelb"></i>
+								Schütze Deinen Computer!
+							</h4>
+							<p>
+								Wir sind nicht verantwortlich für etwaige Schäden, die Dein Computer
+								erleiden, kann während er mit unserem Netzwerk verbunden ist. Sowohl
+								das lokale Netzwerk als auch der Internetzugang sind nicht durch
+								Firewalls oder andere Filter geschützt.
+							</p>
+
+
+						</div>
+						<div class="span6">
+
+							<h4 class="topic">
+								<i class="icon-lightbulb icon-2x gelb"></i>
+								Überlege genau!
+							</h4>
+							<p>
+								… bevor Du etwas tust, dass andere negativ beeinflusst. Wenn Du geschützte
+								Rechte, wie z.B. das Urheberrecht, verletzt, kannst Du strafrechtlich verfolgt
+								werden. Wir können und werden Dich nicht vor Strafverfolgungsbehörden
+								schützen! Zu diesem Zweck werden wir Logs von auffälligem Verhalten erstellen.
+							</p>
+
+							<h4 class="topic">
+								<i class="icon-sitemap icon-2x gelb"></i>
+								Netzwerk
+							</h4>
+							<p>
+								Betreibe keine Netzwerdienste wie DHCP oder sende IPv6 Router Advertisements.
+								Dies ist schädlich für alle. Wir werden Dich lokalisieren und aus dem Netz aussperren.
+								Solltest Du versuchen die Kommunikation anderer im Netzwerk zu belauschen oder zu
+								manipulieren, werden wir das feststellen, Dich aussperren und Anzeige erstatten.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="span4">
+				<div class="container-fluid">
+					<h2>Anmeldung</h2>
+
+					<div class="alert alert-warning">
+						Bitte beachtet, dass das Gerät mit dem Du den Code eingibst, auch das ist,
+						dass Du freischalten möchtest. Dies kann später nicht mehr geändert werden.
+					</div>
+
+					<ul class="unstyled">
+						<li>
+							<span style="color: lightblue"><i class="icon-tag"></i> Mitarbeiter</span>
+							ein Gerät, <i class="icon-time"></i> dauerhaft
+						</li>
+						<li>
+							<span class="gelb"><i class="icon-tag"></i> Bands</span>
+							ein Gerät, <i class="icon-time"></i> 24 Stunden
+						</li>
+
+						<li></li>
+						<li></li>
+					</ul>
+
+
+					<div style="display:none">
+					$(if chap-id)
+						<form name="sendin" action="$(link-login-only)" method="post">
+							<input type="hidden" name="username" />
+							<input type="hidden" name="password" />
+							<input type="hidden" name="dst" value="$(link-orig)" />
+							<input type="hidden" name="popup" value="true" />
+						</form>
+						<script type="text/javascript" src="/md5.js"></script>
+						<script type="text/javascript">
+							window.doLogin = function () {
+								document.sendin.username.value = document.login.username.value
+								document.sendin.password.value = hexMD5( '$(chap-id)' + document.login.password.value + '$(chap-challenge)' )
+								document.sendin.submit()
+								return false
+							}
+						</script>
+					$(endif)
+					</div>
+
+					<form name="login" action="$(link-login-only)" method="post"
+						$(if chap-id) onSubmit="return doLogin()" $(endif)>
+						<input type="hidden" name="dst" value="$(link-orig)" />
+						<input type="hidden" name="popup" value="true" />
+						<input type="hidden" name="password" value="rocktreff" />
+
+						<div class="input-prepend">
+							<span class="add-on">Voucher Code <i class="icon-key"></i></span>
+							<input type="text" class="span5" name="username" value="$(username)" placeholder="Code eingeben">
+						</div>
+
+						<label class="checkbox">
+							<input type="checkbox" id="accept1" value="accept1">
+							Ich habe die Verhaltensregeln gelesen und verstanden.
+						</label>
+
+						<label class="checkbox">
+							<input type="checkbox" id="accept1" value="accept1">
+							Ich erkläre mich damit einverstanden, dass zu technischen und rechtlichen Zwecken,
+							persönliche Daten von mir erhoben und für einen begrenzten Zeitraum gespeichert werden.
+						</label>
+
+						<button class="btn btn-inverse btn-block btn-large">
+							<i class="icon-unlock-alt"></i>
+							Login
+						</button>
+					
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
