@@ -49,7 +49,9 @@ ______ _____ _____  _   _____________ _________________
 							<p>
 								Uns steht in dem Stadion nur begrenzt Bandbreite zur Verfügung. Wir
 								wollen, dass alle von dem Netzwerk profitieren. Daher solltest Du
-								davon absehen größere Mengen an Daten aus dem Netz zu ziehen.
+								davon absehen größere Mengen an Daten aus dem Netz zu ziehen. Solltest
+								Du das nicht beherzigen, behalten wir uns vor Dich zu drosseln bzw.
+								Dir den Zugang zu dem Netz zu entziehen.
 							</p>
 
 
@@ -59,7 +61,7 @@ ______ _____ _____  _   _____________ _________________
 							</h4>
 							<p>
 								Wir sind nicht verantwortlich für etwaige Schäden, die Dein Computer
-								erleiden, kann während er mit unserem Netzwerk verbunden ist. Sowohl
+								erleidet, während er mit unserem Netzwerk verbunden ist. Sowohl
 								das lokale Netzwerk als auch der Internetzugang sind nicht durch
 								Firewalls oder andere Filter geschützt.
 							</p>
@@ -154,17 +156,46 @@ ______ _____ _____  _   _____________ _________________
 						</label>
 
 						<label class="checkbox">
-							<input type="checkbox" id="accept1" value="accept1">
+							<input type="checkbox" id="accept2" value="accept2">
 							Ich erkläre mich damit einverstanden, dass zu technischen und rechtlichen Zwecken,
 							persönliche Daten von mir erhoben und für einen begrenzten Zeitraum gespeichert werden.
 						</label>
 
-						<button class="btn btn-inverse btn-block btn-large">
+						<button id="login" class="btn btn-inverse btn-block btn-large disabled" disabled='disabled'>
 							<i class="icon-unlock-alt"></i>
 							Login
 						</button>
 					
 					</form>
+					<script type="text/javascript">
+						var box1, box2, login
+						box1 = document.getElementById( 'accept1' )
+						box2 = document.getElementById( 'accept2' )
+						login = document.getElementById( 'login' )
+
+						function removeClass ( elem, name ) {
+							elem.className = elem.className.replace( name, '' )
+						}
+
+						function checkBoxes() {
+							console.log(box1.checked, box2.checked)
+							return box1.checked && box2.checked
+						}
+
+						function enableLogin() {
+							if ( checkBoxes() ) {
+								login.className = login.className.replace( /disabled|\s$|^\s/g, '' )
+								login.disabled = false
+							}
+							else {
+								login.className = login.className + ' disabled'
+								login.disabled = true
+							}
+						}
+
+						box1.onclick = enableLogin
+						box2.onclick = enableLogin
+					</script>
 				</div>
 			</div>
 		</div>
