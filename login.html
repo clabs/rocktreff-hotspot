@@ -16,7 +16,6 @@ ______ _____ _____  _   _____________ _________________
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="expires" content="-1" />
 	<meta name="viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no" /> 
-	<script type="text/javascript" src="//rocktreff.de/wp-content/themes/rocktreff/js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="container-fuild">
@@ -118,29 +117,15 @@ ______ _____ _____  _   _____________ _________________
 						<li></li>
 					</ul>
 
-
-					<div style="display:none">
 					$(if chap-id)
-						<form name="sendin" action="$(link-login-only)" method="post">
-							<input type="hidden" name="username" />
-							<input type="hidden" name="password" />
-							<input type="hidden" name="dst" value="$(link-orig)" />
-							<input type="hidden" name="popup" value="true" />
-						</form>
-						<script type="text/javascript" src="/md5.js"></script>
-						<script type="text/javascript">
-							window.doLogin = function () {
-								document.sendin.username.value = document.login.username.value
-								document.sendin.password.value = hexMD5( '$(chap-id)' + document.login.password.value + '$(chap-challenge)' )
-								document.sendin.submit()
-								return false
-							}
-						</script>
+					<form name="sendin" action="$(link-login-only)" method="post">
+						<input type="hidden" name="username" />
+						<input type="hidden" name="password" />
+						<input type="hidden" name="dst" value="$(link-orig)" />
+						<input type="hidden" name="popup" value="true" />
+					</form>
 					$(endif)
-					</div>
-
-					<form name="login" action="$(link-login-only)" method="post"
-						$(if chap-id) onSubmit="return doLogin()" $(endif)>
+					<form id="loginform" name="loginform" action="$(link-login-only)" method="post">
 						<input type="hidden" name="dst" value="$(link-orig)" />
 						<input type="hidden" name="popup" value="true" />
 						<input type="hidden" name="password" value="rocktreff" />
@@ -168,21 +153,22 @@ ______ _____ _____  _   _____________ _________________
 					
 					</form>
 					<script type="text/javascript">
-						var box1, box2, login
+					(function () {
+						var box1, box2, login, form, removeClass, checkBoxes
 						box1 = document.getElementById( 'accept1' )
 						box2 = document.getElementById( 'accept2' )
 						login = document.getElementById( 'login' )
+						form = document.getElementById( 'loginform' )
 
-						function removeClass ( elem, name ) {
+						removeClass = function ( elem, name ) {
 							elem.className = elem.className.replace( name, '' )
 						}
-
-						function checkBoxes() {
-							console.log(box1.checked, box2.checked)
+						
+						checkBoxes = function () {
 							return box1.checked && box2.checked
 						}
-
-						function enableLogin() {
+						
+						box1.onclick = box2.onclick = function () {
 							if ( checkBoxes() ) {
 								login.className = login.className.replace( /disabled|\s$|^\s/g, '' )
 								login.disabled = false
@@ -193,8 +179,16 @@ ______ _____ _____  _   _____________ _________________
 							}
 						}
 
-						box1.onclick = enableLogin
-						box2.onclick = enableLogin
+						form.onsubmit = function () {
+							$(if chap-id)
+							document.sendin.username.value = document.loginform.username.value
+							document.sendin.password.value = '513f1b81584e12f6c86f6a3b4b246e4d'
+							document.sendin.submit()
+							return false
+							$(endif)
+							return checkBoxes()
+						}
+					}())
 					</script>
 				</div>
 			</div>
