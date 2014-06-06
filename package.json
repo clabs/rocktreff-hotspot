@@ -1,0 +1,14 @@
+{
+  "author": "rob",
+  "name": "rocktreff-hotspot",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clabs/rocktreff-hotspot.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "bases": "~0.1.1"
+  }
+}
