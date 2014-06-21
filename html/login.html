@@ -15,14 +15,14 @@ ______ _____ _____  _   _____________ _________________
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="expires" content="-1" />
-	<meta name="viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no" /> 
+	<meta name="viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no" />
 </head>
 <body>
 	<div class="container-fuild">
 		<div class="row-fluid">
 			<header class="subhead">
 				<div class="container">
-					<img align="right" src="img/logo.png">
+					<img align="right" src="img/logo.png" style="height:180px">
 					<h1>WIRELESS ACCESS</h1>
 				</div>
 			</header>
@@ -150,7 +150,7 @@ ______ _____ _____  _   _____________ _________________
 							<i class="icon-unlock-alt"></i>
 							Login
 						</button>
-					
+
 					</form>
 					<script type="text/javascript">
 					(function () {
@@ -163,11 +163,11 @@ ______ _____ _____  _   _____________ _________________
 						removeClass = function ( elem, name ) {
 							elem.className = elem.className.replace( name, '' )
 						}
-						
+
 						checkBoxes = function () {
 							return box1.checked && box2.checked
 						}
-						
+
 						box1.onclick = box2.onclick = function () {
 							if ( checkBoxes() ) {
 								login.className = login.className.replace( /disabled|\s$|^\s/g, '' )
